@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className="container">
       <div className="login-box">
-        <img src="youpotify.png" alt="google logo" />
+        <img src="youpotify_cheeky.png" alt="google logo" />
         <div>
           <h2>로그인</h2>
         </div>
