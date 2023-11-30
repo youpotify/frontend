@@ -16,7 +16,7 @@ export default function Login() {
         <div>
           <h2>로그인</h2>
         </div>
-        <form className="input">
+        <form className="form">
           <div>
             <fieldset>
               <legend>이메일</legend>
