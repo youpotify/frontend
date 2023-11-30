@@ -1,7 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  function NavigateToSignup() {
+    navigate("/signup");
+  }
+
   return (
     <div className="container">
       <div className="login-box">
@@ -12,7 +19,7 @@ export default function Login() {
         <form className="input">
           <div>
             <fieldset>
-              <legend>Email or Phone</legend>
+              <legend>이메일</legend>
               <div>
                 <input id="email" placeholder="이메일" />
               </div>
@@ -26,8 +33,10 @@ export default function Login() {
           </fieldset>
         </form>
         <div className="btn-box">
-          <span id="signup">계정 만들기</span>
-          <span id="login">로그인</span>
+          <button id="signup" onClick={NavigateToSignup}>
+            계정 만들기
+          </button>
+          <button id="login">로그인</button>
         </div>
       </div>
     </div>

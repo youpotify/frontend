@@ -10,7 +10,7 @@
 .login-box {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   width: 20rem;
   height: 50vh;
   margin: auto 0;
@@ -24,7 +24,6 @@
   height: 35px;
 }
 
-
 .input fieldset {
   border-radius: 0.3rem;
 }
@@ -33,18 +32,19 @@
   font-size: 12px;
 }
 
-.input #email, #password {
+.input #email,
+#password {
   width: 20rem;
   font-size: 1.2rem;
   border: none;
 }
 
-.input #email:focus{
+.input #email:focus {
   outline: none;
   border: none;
 }
 
-.input #password:focus{
+.input #password:focus {
   outline: none;
   border: none;
 }
@@ -52,22 +52,37 @@
 .btn-box {
   display: flex;
   justify-content: space-between;
-  
+
   width: 20rem;
   padding: 0.5rem 1rem;
+}
 
+.btn-box button {
+  border: none;
 }
 
 .btn-box #signup {
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   color: white;
-  background-color: #1DB954;
+  background-color: #1db954;
+}
+
+.btn-box #signup:hover {
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .btn-box #login {
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   color: white;
-  background-color: #1765CC;
+  background-color: #1765cc;
+}
+
+.btn-box #login:hover {
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
 }
