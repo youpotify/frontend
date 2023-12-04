@@ -12,7 +12,7 @@ export default function Signup() {
   return (
     <div className="container">
       <div className="login-box">
-        <img src="youpotify_cheeky.png" alt="google logo" />
+        <img src="youpotify.png" alt="google logo" />
         <div>
           <h2>회원가입</h2>
         </div>
