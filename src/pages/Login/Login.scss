@@ -24,27 +24,27 @@
   height: 35px;
 }
 
-.input fieldset {
+.form fieldset {
   border-radius: 0.3rem;
 }
-.input legend {
+.form legend {
   text-align: left;
   font-size: 12px;
 }
 
-.input #email,
+.form #email,
 #password {
   width: 20rem;
   font-size: 1.2rem;
   border: none;
 }
 
-.input #email:focus {
+.form #email:focus {
   outline: none;
   border: none;
 }
 
-.input #password:focus {
+.form #password:focus {
   outline: none;
   border: none;
 }

@@ -1,12 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.scss";
 
-export default function Login() {
+export default function Signup() {
   const navigate = useNavigate();
 
-  function NavigateToSignup() {
-    navigate("/signup");
+  function NavigateToLogin() {
+    navigate("/login");
   }
 
   return (
@@ -14,7 +13,7 @@ export default function Login() {
       <div className="login-box">
         <img src="youpotify.png" alt="google logo" />
         <div>
-          <h2>로그인</h2>
+          <h2>회원가입</h2>
         </div>
         <form className="form">
           <div>
@@ -28,15 +27,25 @@ export default function Login() {
           <fieldset>
             <legend>비밀번호 입력</legend>
             <div>
-              <input id="password" placeholder="비밀번호" />
+              <input id="password" placeholder="비밀번호" type="password" />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>비밀번호 확인</legend>
+            <div>
+              <input
+                id="password"
+                placeholder="비밀번호 확인"
+                type="password"
+              />
             </div>
           </fieldset>
         </form>
         <div className="btn-box">
-          <button id="signup" onClick={NavigateToSignup}>
-            계정 만들기
+          <button id="signup" onClick={NavigateToLogin}>
+            로그인 화면
           </button>
-          <button id="login">로그인</button>
+          <button id="login">가입 완료</button>
         </div>
       </div>
     </div>
