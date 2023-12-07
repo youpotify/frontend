@@ -20,6 +20,7 @@ export default function Sidebar() {
     </div>
   ) : (
     <div className="sidebar">
+      <span class="material-symbols-outlined">menu</span>
       <div>홈</div>
       <div>보관함</div>
       <div>추천곡</div>
