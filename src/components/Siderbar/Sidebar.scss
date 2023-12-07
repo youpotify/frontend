@@ -12,3 +12,10 @@
   background-color: azure;
   padding: 1rem;
 }
+
+#menu:hover {
+  background-color: whitesmoke;
+  opacity: 0.8;
+  border-radius: 50%;
+  cursor: pointer;
+}
