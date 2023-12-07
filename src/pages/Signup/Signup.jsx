@@ -1,4 +1,5 @@
 import React from "react";
+import "./Signup.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
