@@ -1,21 +1,60 @@
-.sidebar {
+.sidebar,
+.sidebar-clicked {
   display: flex;
   flex-direction: column;
   background-color: antiquewhite;
-  padding: 1rem;
-  align-items: center;
+  padding: 16px;
+  align-items: start;
 
   border: 2px solid greenyellow;
 }
 
-.sidebar div {
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
   background-color: azure;
-  padding: 1rem;
+  padding: 4px 10px;
+
+  width: 50px;
+  height: 50px;
+
+  #menu-item-text {
+    font-size: 10px;
+  }
 }
 
-#menu:hover {
+.menu-list-clicked {
+  display: flex;
+  align-items: center;
+  background-color: aquamarine;
+  padding: 0px 10px;
+
+  height: 50px;
+}
+
+#menu-toggle:hover {
   background-color: whitesmoke;
   opacity: 0.8;
   border-radius: 50%;
   cursor: pointer;
+}
+
+#menu-item:hover {
+  background-color: whitesmoke;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.add-playlist {
+  background-color: beige;
+  border-radius: 30px;
+}
+
+.playlist {
+  #menu-item {
+    height: 50px;
+    padding: 0px 10px;
+  }
 }

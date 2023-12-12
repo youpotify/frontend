@@ -8,39 +8,70 @@ export default function Sidebar() {
     <div>
       <div className="sidebar-clicked">
         <div className="route-list">
-          <div
-            class="material-symbols-outlined"
-            id="menu"
-            onClick={() => setIsMenuClicked(false)}
-          >
-            menu
-          </div>
-          <div>홈</div>
-          <div>보관함</div>
-          <div>추천곡</div>
-          <div>+ 새 재생목록</div>
-          <div>좋아요 표시한 음악</div>
           <div>
-            <div>재생목록1</div>
-            <div>재생목록2</div>
-            <div>재생목록3</div>
-            <div>재생목록4</div>
+            <span
+              class="material-symbols-outlined"
+              id="menu-toggle"
+              onClick={() => setIsMenuClicked(false)}
+            >
+              menu
+            </span>
+            <span>
+              <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
+            </span>
+          </div>
+          <div className="menu-list-clicked">
+            <div class="material-symbols-outlined">home</div>
+            <div id="menu-item-text">홈</div>
+          </div>
+          <div className="menu-list-clicked">
+            <div class="material-symbols-outlined">library_music</div>
+            <div id="menu-item-text">보관함</div>
+          </div>
+          <div className="menu-list-clicked">
+            <div class="material-symbols-outlined">recommend</div>
+            <div id="menu-item-text">추천곡</div>
+          </div>
+          <hr />
+          <div className="add-playlist" id="menu-item">
+            + 새 재생목록
+          </div>
+          <div className="playlist">
+            <div id="menu-item">좋아요 표시한 음악</div>
+            <div id="menu-item">재생목록1</div>
+            <div id="menu-item">재생목록2</div>
+            <div id="menu-item">재생목록3</div>
+            <div id="menu-item">재생목록4</div>
           </div>
         </div>
       </div>
     </div>
   ) : (
     <div className="sidebar">
-      <div
-        class="material-symbols-outlined"
-        id="menu"
-        onClick={() => setIsMenuClicked(true)}
-      >
-        menu
+      <div>
+        <span
+          class="material-symbols-outlined"
+          id="menu-toggle"
+          onClick={() => setIsMenuClicked(true)}
+        >
+          menu
+        </span>
+        <span>
+          <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
+        </span>
       </div>
-      <div class="material-symbols-outlined">home</div>
-      <div class="material-symbols-outlined">library_music</div>
-      <div class="material-symbols-outlined">recommend</div>
+      <div className="menu-list">
+        <div class="material-symbols-outlined">home</div>
+        <div id="menu-item-text">홈</div>
+      </div>
+      <div className="menu-list">
+        <div class="material-symbols-outlined">library_music</div>
+        <div id="menu-item-text">보관함</div>
+      </div>
+      <div className="menu-list">
+        <div class="material-symbols-outlined">recommend</div>
+        <div id="menu-item-text">추천곡</div>
+      </div>
     </div>
   );
 }
