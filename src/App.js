@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Callback from "./pages/Callback/Callback";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
-import Signup from "./pages/Signup/Signup";
 import Profile from "./pages/Profile/Profile";
+import Signup from "./pages/Signup/Signup";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/callback" element={<Callback />} />
         </Routes>
       </BrowserRouter>
     </div>
