@@ -7,9 +7,9 @@ import HashTag from "../../components/Home/Hashtag";
 export default function Home() {
   return (
     <div className="home">
-      <Header />
+      <Sidebar />
       <div className="body">
-        <Sidebar />
+        <Header />
         <div className="home_contents">
           <HashTag />
           {/* 해시태그에 다양한 종류의 플레이리스트들을 추천하는건? 

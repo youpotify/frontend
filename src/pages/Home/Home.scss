@@ -1,10 +1,11 @@
 .home {
+  display: flex;
   background-color: grey;
 }
 
 .body {
-  display: grid;
-  grid-template-columns: 1fr 9fr;
+  flex: 1;
+  background-color: aqua;
 }
 
 .home_contents {
