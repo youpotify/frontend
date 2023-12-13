@@ -21,16 +21,16 @@ export default function Sidebar() {
             </span>
           </div>
           <div className="menu-list-clicked">
-            <div class="material-symbols-outlined">home</div>
-            <div id="menu-item-text">홈</div>
+            <span class="material-symbols-outlined">home</span>
+            <span id="menu-item-text">홈</span>
           </div>
           <div className="menu-list-clicked">
-            <div class="material-symbols-outlined">library_music</div>
-            <div id="menu-item-text">보관함</div>
+            <span class="material-symbols-outlined">library_music</span>
+            <span id="menu-item-text">보관함</span>
           </div>
           <div className="menu-list-clicked">
-            <div class="material-symbols-outlined">recommend</div>
-            <div id="menu-item-text">추천곡</div>
+            <span class="material-symbols-outlined">recommend</span>
+            <span id="menu-item-text">추천곡</span>
           </div>
           <hr />
           <div className="add-playlist" id="menu-item">
