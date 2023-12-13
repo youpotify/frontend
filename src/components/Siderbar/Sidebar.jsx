@@ -10,7 +10,7 @@ export default function Sidebar() {
         <div className="route-list">
           <div>
             <span
-              class="material-symbols-outlined"
+              className="material-symbols-outlined"
               id="menu-toggle"
               onClick={() => setIsMenuClicked(false)}
             >
@@ -21,15 +21,15 @@ export default function Sidebar() {
             </span>
           </div>
           <div className="menu-list-clicked">
-            <span class="material-symbols-outlined">home</span>
+            <span className="material-symbols-outlined">home</span>
             <span id="menu-item-text">홈</span>
           </div>
           <div className="menu-list-clicked">
-            <span class="material-symbols-outlined">library_music</span>
+            <span className="material-symbols-outlined">library_music</span>
             <span id="menu-item-text">보관함</span>
           </div>
           <div className="menu-list-clicked">
-            <span class="material-symbols-outlined">recommend</span>
+            <span className="material-symbols-outlined">recommend</span>
             <span id="menu-item-text">추천곡</span>
           </div>
           <hr />
@@ -50,7 +50,7 @@ export default function Sidebar() {
     <div className="sidebar">
       <div>
         <span
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           id="menu-toggle"
           onClick={() => setIsMenuClicked(true)}
         >
@@ -61,15 +61,15 @@ export default function Sidebar() {
         </span>
       </div>
       <div className="menu-list">
-        <div class="material-symbols-outlined">home</div>
+        <div className="material-symbols-outlined">home</div>
         <div id="menu-item-text">홈</div>
       </div>
       <div className="menu-list">
-        <div class="material-symbols-outlined">library_music</div>
+        <div className="material-symbols-outlined">library_music</div>
         <div id="menu-item-text">보관함</div>
       </div>
       <div className="menu-list">
-        <div class="material-symbols-outlined">recommend</div>
+        <div className="material-symbols-outlined">recommend</div>
         <div id="menu-item-text">추천곡</div>
       </div>
     </div>

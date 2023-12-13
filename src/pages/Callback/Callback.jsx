@@ -9,7 +9,7 @@ export default function Callback() {
   const navigate = useNavigate();
 
   const [text, setText] = useState("Connect to Spotify");
-  const [clientID, setClientID] = useState("");
+  const [clientId, setclientId] = useState("");
   const [authCode, setAuthCode] = useState(null);
 
   useEffect(() => {
@@ -18,40 +18,40 @@ export default function Callback() {
     if (code) {
       setAuthCode(code);
     }
-    console.log(`code : ${code}`);
-    console.log(`authCode : ${authCode}`);
   }, [authCode]);
 
   const connectToSpotify = async () => {
     try {
       const response = await axios.get(`${SERVER_URL}/spotify/oauths/pkce`, {
         params: {
-          text,
+          text: clientId,
         },
       });
 
-      console.log(response.data.authorizationURLWithParams);
-      window.location.href = response.data.authorizationURLWithParams;
+      window.location.href = response.data.redirect_uri;
     } catch (error) {
       console.error(error);
     }
   };
 
   const getTokens = async () => {
-    console.log(authCode);
     if (authCode) {
       try {
-        const response = await axios.post(
-          `${SERVER_URL}/api/spotify/oauth/tokens`,
+        const response = await axios.get(
+          `${SERVER_URL}/spotify/oauths/tokens`,
           {
-            authCode,
+            params: {
+              text: authCode,
+            },
           }
         );
 
         const data = response.data;
-        console.log(data);
 
-        // if (data) navigate("/");
+        if (data) {
+          alert("oauth 성공!");
+          navigate("/");
+        }
       } catch (error) {
         console.error(error);
       }
@@ -69,8 +69,8 @@ export default function Callback() {
       <button onClick={connectToSpotify}>{text}</button>
       <input
         placeholder="enter your Spotify User ID here"
-        value={clientID}
-        onChange={(e) => setClientID(e.target.value)}
+        value={clientId}
+        onChange={(e) => setclientId(e.target.value)}
       />
     </SpotifyConnectionBtn>
   );
