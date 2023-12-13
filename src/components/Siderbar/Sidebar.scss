@@ -48,13 +48,25 @@
 }
 
 .add-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: beige;
   border-radius: 30px;
+  width: 200px;
+  height: 36px;
+  font-size: 14px;
+
 }
 
 .playlist {
   #menu-item {
-    height: 50px;
-    padding: 0px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 216px;
+    height: 56px;
+    padding: 4px 50px 4px 16px;
   }
 }
