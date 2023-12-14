@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto 0;
+  border: 2px solid greenyellow;
+}
+
+.header div {
+  background-color: antiquewhite;
+  padding: 1rem;
+}
+
+.header div span {
+  background-color: azure;
+  padding: 1rem;
+}
+
+.left-items {
+  // display: grid;
+  // grid-template-columns: 1fr 2fr;
+  border: 2px solid greenyellow;
+}
+
+#menu-btn {
+  width: 24px;
+  height: 24px;
+}
+
+#youpotify-btn {
+  width: 70px;
+  height: 24px;
+}
+
+#profile-btn {
+  width: 26px;
+  height: 24px;
+}
