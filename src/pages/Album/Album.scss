@@ -32,13 +32,14 @@
       }
   
       .content {
+        width: 100%;
         display: flex;
         flex-direction: column;
   
         .album-info {
           display: flex;
           align-items: center;
-          margin-bottom: 20px;
+          margin-bottom: 100px;
   
           .left-cont {
             flex: 0 0 auto;
@@ -51,8 +52,12 @@
           }
   
           .right-cont {
+            height: 200px;
             flex: 1;
-  
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            
             h2 {
               font-size: 2em;
               margin-bottom: 0.5em;
@@ -62,9 +67,9 @@
               font-size: 1em;
             }
 
-            p{
-                font-size: 14px;
-            }
+            // p{
+            //     font-size: 14px;
+            // }
   
             .btns {
               button {
@@ -88,6 +93,7 @@
             padding: 0;
             margin: 0;
             font-size: 14px;
+            padding-bottom: 30px;
         
             .song {
                 display: flex;
