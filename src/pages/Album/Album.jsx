@@ -47,7 +47,7 @@ function Album() {
 
     return (
         <div className='album-page'>
-            <div className='container'>
+            <div className='cont'>
                 <div className="search-bar">
                     <input type="text" placeholder="검색..." />
                     <button onClick={handleSearch}></button>

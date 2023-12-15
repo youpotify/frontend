@@ -71,75 +71,75 @@ function Artist() {
 
     return (
     <div className='artist-page'>
-            <div className="backgroud"
+        <div className="backgroud"
             style={{ 
                 backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
                 url(${artistInfo.img})` }}>
-            </div>
-
-        <div className="container">
-        <div className="search-bar">
-            <input type="text" placeholder="검색..." value={searchTerm} 
-                onChange={(e) => setSearchTerm(e.target.value)}/>
-            <button onClick={handleSearch}></button>
         </div>
 
-        <section className="artist-content inner-cont">
-            <h1>{artistInfo.name}</h1>
-            {/* <p className={isExpanded ? 'expanded' : '' }>{artistData.info}</p> */}
-            <button className="outline-btns" onClick={toggleText}>{isExpanded ? '접기' : '더보기'}</button>
+        <div className="container">
+            <div className="search-bar">
+                <input type="text" placeholder="검색..." value={searchTerm} 
+                    onChange={(e) => setSearchTerm(e.target.value)}/>
+                <button onClick={handleSearch}></button>
+            </div>
 
-            <ul className='likebtns'>
-                <li><span class="material-icons">shuffle</span> 셔플</li>
-                <li><span class="material-icons">share</span> 공유</li>
-            </ul>
-        </section>
+            <section className="artist-content inner-cont">
+                <h1>{artistInfo.name}</h1>
+                {/* <p className={isExpanded ? 'expanded' : '' }>{artistData.info}</p> */}
+                <button className="outline-btns" onClick={toggleText}>{isExpanded ? '접기' : '더보기'}</button>
 
-        <section className="top-songs inner-cont">
-            <h2>노래</h2>
-            <ul>
-                {artistInfo.songs.slice(0,5).map((s,index)=>(
-                    <li key={index} className='song'>
-                        <ul>
-                            <img className='song-img' src={s.album.images[0].url}/>
-                            <li className='song-title'>{s.name}</li>
-                            <li className='song-artist'>{artistInfo.name}</li>
-                            <li className='song-album'>{s.album.name}</li>
-                            <li className='song-icons'>
-                                <span class="material-icons">thumb_up</span>
-                                <span class="material-icons">thumb_down</span>
-                                <span class="material-icons">add_box</span>
-                                <span class="material-icons">share</span>
-                            </li>
-                        </ul>
-                    </li>
-                ))}
-            </ul>
-            <button className='outline-btns'>모두 보기</button>
-        </section>
+                <ul className='likebtns'>
+                    <li><span class="material-icons">shuffle</span> 셔플</li>
+                    <li><span class="material-icons">share</span> 공유</li>
+                </ul>
+            </section>
 
-        <section className='albums inner-cont'>
-            <h2>앨범</h2>
-            <div className='album-view'>
-                <ul className='album-list' style={{ transform: `translateX(-${currentStartIndex * 20}%)` }}>
-                    {artistInfo.albums.map((album, index)=>(
-                        <li key={index} className='album'>
-                            <div className='album-img-wrapper'>
-                                <img className='album-img' src={album.images[0].url}/>
-                                <span className='play-icon'>▶</span>
-                            </div>
-                            
-                            <span><Link to={`/album/${album.id}`}>{album.name}</Link></span>
-                            {/* <span>{album.release_date}</span> */}
+            <section className="top-songs inner-cont">
+                <h2>노래</h2>
+                <ul>
+                    {artistInfo.songs.slice(0,5).map((s,index)=>(
+                        <li key={index} className='song'>
+                            <ul>
+                                <img className='song-img' src={s.album.images[0].url}/>
+                                <li className='song-title'>{s.name}</li>
+                                <li className='song-artist'>{artistInfo.name}</li>
+                                <li className='song-album'>{s.album.name}</li>
+                                <li className='song-icons'>
+                                    <span class="material-icons">thumb_up</span>
+                                    <span class="material-icons">thumb_down</span>
+                                    <span class="material-icons">add_box</span>
+                                    <span class="material-icons">share</span>
+                                </li>
+                            </ul>
                         </li>
                     ))}
                 </ul>
-            </div>
+                <button className='outline-btns'>모두 보기</button>
+            </section>
 
-            <button onClick={moveLeft} disabled={currentStartIndex === 0}>&lt;</button>
-            <button onClick={moveRight} disabled={currentStartIndex >= maxIndex}>&gt;</button>
-           
-        </section>
+            <section className='albums inner-cont'>
+                <h2>앨범</h2>
+                <div className='album-view'>
+                    <ul className='album-list' style={{ transform: `translateX(-${currentStartIndex * 20}%)` }}>
+                        {artistInfo.albums.map((album, index)=>(
+                            <li key={index} className='album'>
+                                <div className='album-img-wrapper'>
+                                    <img className='album-img' src={album.images[0].url}/>
+                                    <span className='play-icon'>▶</span>
+                                </div>
+                                
+                                <span><Link to={`/album/${album.id}`}>{album.name}</Link></span>
+                                {/* <span>{album.release_date}</span> */}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <button onClick={moveLeft} disabled={currentStartIndex === 0}>&lt;</button>
+                <button onClick={moveRight} disabled={currentStartIndex >= maxIndex}>&gt;</button>
+            
+            </section>
 
     </div>
         </div>

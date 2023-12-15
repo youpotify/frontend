@@ -9,245 +9,248 @@ a{
     color: inherit;
 }
 
-.artist-page{
+.artist-page {
     background-color: black;
     height: auto;
-}
 
-.backgroud {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 70vh; // 이미지가 차지할 화면의 비율
-    background-size: auto 100%; 
-    //background-repeat: no-repeat;
-    background-position: center top;
-    z-index: 1;
-}
-
-
-.container {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    
-
-    .material-icons{
-        font-size: 12px;
+    .backgroud {
+        position: absolute;
+        // top: 0;
+        width: 100%;
+        height: 70vh; // 이미지가 차지할 화면의 비율
+        background-size: auto 100%; 
+        // background-repeat: no-repeat;
+        background-position: center top;
+        z-index: 1;
     }
 
-    .outline-btns{
-        outline: none;
-        border: 1px solid #fff;
-        background: inherit;
-        color: #fff;
-        font-size: 12px;
-        padding: 5px 15px;
-    }
-    
-
-    .search-bar {
-        // position: absolute;
+    .container {
+        position: relative;
         z-index: 2;
-        top: 0;
-        width: 100%;
         display: flex;
-        justify-content: center;
-        padding : 30px 0;
+        flex-direction: column;
+        height: auto;
         
-
-        input {
-            width: 30%;
-            padding: 10px;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            opacity: 0.5;
+    
+        .material-icons{
+            font-size: 12px;
         }
-
-        button {
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            font-size: 16px;
+    
+        .outline-btns{
+            outline: none;
+            border: 1px solid #fff;
+            background: inherit;
+            color: #fff;
+            font-size: 12px;
+            padding: 5px 15px;
         }
-    }
-
-    .inner-cont{
-        width: 100%;
-        text-align: left;
-        padding-left: 100px;
-        color: #fff;
-    }
-
-    .artist-content {
-        margin-top: 200px;
-        text-align: left;
-        flex-grow: 1;
         
-        h1 {
-            font-size: 38px;
-        }
-
-        
-        //아티스트 설명
-        p {
-            width: 60%;
-            font-size: 14px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            max-height: 3em;
-        }
-
-        p.expanded{
-            display: block;
-            -webkit-line-clamp: none;
-            max-height: none;
-        }
-
-
-        .likebtns{
+    
+        .search-bar {
+            //position: absolute;
+            z-index: 2;
+            top: 0;
+            width: 100%;
             display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            padding: 0;
-            line-height: 14px;
-
-            li {
-                padding: 5px 20px;
-                background-color: #fff;
-                border-radius: 15px;
-                color: #000;
-                font-size: 12px;
-                margin-right: 5px;
+            justify-content: center;
+            padding : 30px 0;
+            
+    
+            input {
+                width: 30%;
+                padding: 10px;
+                margin-right: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                opacity: 0.5;
+            }
+    
+            button {
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                font-size: 16px;
             }
         }
-    }
-
-    .top-songs {
-        padding-bottom: 30px;
-
-
-        ul{
-            padding-left: 0;
+    
+        .inner-cont{
+            width: 100%;
+            text-align: left;
+            padding-left: 100px;
+            color: #fff;
         }
-
-        .song{
-            width: 95%;
-            margin-bottom: 5px;
-            font-size: 14px;
-
-
-            ul{
+    
+        .artist-content {
+            margin-top: 200px;
+            text-align: left;
+            flex-grow: 1;
+            
+            
+            h1 {
+                font-size: 38px;
+            }
+    
+            
+            //아티스트 설명
+            p {
+                width: 60%;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                max-height: 3em;
+            }
+    
+            p.expanded{
+                display: block;
+                -webkit-line-clamp: none;
+                max-height: none;
+            }
+    
+    
+            .likebtns{
                 display: flex;
                 flex-direction: row;
-                justify-content: space-between;
-
-                li{
-                    width: 20%;
-                    overflow: hidden;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
+                justify-content: flex-start;
+                padding: 0;
+                line-height: 14px;
+    
+                li {
+                    padding: 5px 20px;
+                    background-color: #fff;
+                    border-radius: 15px;
+                    color: #000;
+                    font-size: 12px;
+                    margin-right: 5px;
                 }
-
-
-                .song-img{
-                    width: 30px;
-                    height: 30px;
-                    border: 1px solid #ccc;
-                }
-
-                .song-icons{
-                    .material-icons{
-                        margin-right: 10px;
+            }
+        }
+    
+        .top-songs {
+            padding-bottom: 30px;
+    
+    
+            ul{
+                padding-left: 0;
+            }
+    
+            .song{
+                width: 95%;
+                margin-bottom: 5px;
+                font-size: 14px;
+    
+    
+                ul{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+    
+                    li{
+                        width: 20%;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+    
+    
+                    .song-img{
+                        width: 30px;
+                        height: 30px;
+                    }
+    
+                    .song-icons{
+                        .material-icons{
+                            margin-right: 10px;
+                        }
                     }
                 }
             }
         }
-    }
-
-    .albums{
-        overflow: hidden;
-        // width: 90%;
-        padding-bottom: 50px;
-
-        .album-view{
-            width: 95%;
-            margin: 0 auto;
+    
+        .albums{
             overflow: hidden;
-        }
+            // width: 90%;
+            padding-bottom: 50px;
     
-        .album-list{
-            display: flex;
-            flex-direction: row;
-            transition: transform 0.5s ease;
-            padding-right: 100px;
-    
-            .album{
-                flex: 0 0 21%;
-                margin-right: 10px;
+            .album-view{
+                width: 95%;
+                margin: 0 auto;
+                overflow: hidden;
+            }
+        
+            .album-list{
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                align-items: center;
-                
-
-                span{
-                    display: inline-block;
-                    width: 150px;
-                    white-space: nowrap;
-                    text-align: center;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    font-size: 14px;
-                    padding-top: 10px;
-                }
-    
-                .album-img-wrapper {
-                    position: relative;
-    
-                    .album-img{
-                        width: 150px;
-                        height: 150px;
-                    }
-    
-                    .play-icon {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%);
-                        color: white;
-                        font-size: 24px;
-                        opacity: 0;
-                        transition: opacity 0.3s ease;
-                    }
-    
-                    &:hover .play-icon {
-                        opacity: 1; // 호버 시 보임
-                    }
+                flex-direction: row;
+                transition: transform 0.5s ease;
+                padding-right: 100px;
+        
+                .album{
+                    flex: 0 0 21%;
+                    margin-right: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
                     
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background: rgba(0, 0, 0, 0.5);
-                        opacity: 0;
-                        transition: opacity 0.3s ease;
-                    }
     
-                    &:hover::before {
-                        opacity: 1;
+                    span{
+                        display: inline-block;
+                        width: 150px;
+                        white-space: nowrap;
+                        text-align: center;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        font-size: 14px;
+                        padding-top: 10px;
+                    }
+        
+                    .album-img-wrapper {
+                        position: relative;
+        
+                        .album-img{
+                            width: 150px;
+                            height: 150px;
+                        }
+        
+                        .play-icon {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            color: white;
+                            font-size: 24px;
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        }
+        
+                        &:hover .play-icon {
+                            opacity: 1; // 호버 시 보임
+                        }
+                        
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0, 0, 0, 0.5);
+                            opacity: 0;
+                            transition: opacity 0.3s ease;
+                        }
+        
+                        &:hover::before {
+                            opacity: 1;
+                        }
                     }
                 }
             }
         }
     }
 }
+
+
+
+
