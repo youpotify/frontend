@@ -5,7 +5,7 @@ export default function HashTag() {
       <span>운동</span>
       <span>휴식</span>
       <span>파티</span>
-      <spna>로맨스</spna>
+      <span>로맨스</span>
       <span>잠잘 때</span>
     </div>
   );
