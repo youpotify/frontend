@@ -3,6 +3,7 @@ import "./Home.scss";
 import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Siderbar/Sidebar";
 import HashTag from "../../components/Home/Hashtag";
+import MusicVideo from "../../components/Home/recommendations/music-video/MusicVideo";
 
 export default function Home() {
   return (
@@ -14,10 +15,7 @@ export default function Home() {
           <HashTag />
           {/* 해시태그에 다양한 종류의 플레이리스트들을 추천하는건? 
           my own ,forgotten ,weather ,mood, vibes,  */}
-
-          <div>***의 다시 듣기</div>
-
-          <div>추천 뮤직 비디오</div>
+          <MusicVideo />
 
           <div>추천 플레이리스트</div>
 
