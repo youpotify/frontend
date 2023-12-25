@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Header.scss";
-import Search from "./Search";
+import Search from "../Search/Search";
 
 export default function Header() {
   const navigate = useNavigate();
