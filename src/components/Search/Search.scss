@@ -7,11 +7,20 @@
   span {
     padding: 0px 4px;
   }
+  span:hover {
+    cursor: pointer;
+  }
 
   input {
+    padding: 0px 4px;
     width: 450px;
     font-size: 16px;
     background-color: #2f3637;
     border: none;
+    color: white;
+  }
+
+  input:focus {
+    outline: none;
   }
 }
