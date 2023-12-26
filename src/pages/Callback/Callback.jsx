@@ -28,7 +28,8 @@ export default function Callback() {
         },
       });
 
-      window.location.href = response.data.redirect_uri;
+      console.log(response.data.redirect_url);
+      window.location.href = response.data.redirect_url;
     } catch (error) {
       console.error(error);
     }
@@ -36,6 +37,7 @@ export default function Callback() {
 
   const getTokens = async () => {
     if (authCode) {
+      console.log(authCode);
       try {
         const response = await axios.get(
           `${SERVER_URL}/spotify/oauths/tokens`,
@@ -47,6 +49,9 @@ export default function Callback() {
         );
 
         const data = response.data;
+        console.log(data);
+        localStorage.setItem("accessToken", data.access_token);
+        localStorage.setItem("refreshToken", data.refresh_token);
 
         if (data) {
           alert("oauth 성공!");
