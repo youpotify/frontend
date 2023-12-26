@@ -5,8 +5,8 @@ import Callback from "./pages/Callback/Callback";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
+import Search from "./pages/Search/Search";
 import Signup from "./pages/Signup/Signup";
-import SearchResult from "./pages/SearchResult/SearchResult";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/callback" element={<Callback />} />
-          <Route path="/search" element={<SearchResult />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 import "./Header.scss";
-import Search from "../Search/Search";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ export default function Header() {
         <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
       </div> */}
       <div>
-        <Search />
+        <SearchBar />
       </div>
       <div>
         <span>날씨</span>

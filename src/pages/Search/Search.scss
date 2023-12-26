@@ -1,0 +1,15 @@
+.search {
+  display: flex;
+  background-color: grey;
+  color: white;
+}
+
+.body {
+  flex: 1;
+  background-color: var(--color--black);
+}
+
+.contents {
+  padding: 2.5rem 5rem;
+  border: 2px solid greenyellow;
+}

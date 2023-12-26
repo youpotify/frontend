@@ -1,7 +1,6 @@
-import axios from "axios";
-import "./Search.scss";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SearchBar.scss";
 
 export default function Search() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ export default function Search() {
   }
 
   return (
-    <div className="search">
+    <div className="search-bar">
       <span class="material-symbols-outlined" id="search-btn">
         search
       </span>
