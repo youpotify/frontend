@@ -7,7 +7,7 @@ import SearchResult from "../../components/SearchResult/SearchResult";
 import Sidebar from "../../components/Siderbar/Sidebar";
 import "./Search.scss";
 
-export default function Search() {
+export default async function Search() {
   const [searchResult, setSearchResult] = useState("");
 
   const location = useLocation();
@@ -74,7 +74,7 @@ export default function Search() {
         }
       }
 
-      searchSpotify("track:감사 artist:Kim Dong Ryul", "track");
+      searchSpotify("artist:아이유", "artist");
     };
 
     if (keyword) {
