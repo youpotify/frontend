@@ -5,7 +5,6 @@ import axios from 'axios';
 import { FaPause, FaStop, FaPlay } from 'react-icons/fa';
 
 const MusicPlayer = () => {
-    const [token, setToken] = useState(''); // 스포티파이 토큰 값
     const [spotifyMusic, setSpotifyMusic] = useState([]); // 스포티파이 노래 호출
 
 
@@ -17,7 +16,7 @@ const MusicPlayer = () => {
 
     const [progress, setProgress] = useState(0); // 재생 진행률 상태
     const [currentTime, setCurrentTime] = useState(0); // 현재 재생 시간 상태
-
+    const [totalDuration, setTotalDuration] = useState(0); // 총 재생 시간
 
     const [isPlayerBarVisible, setIsPlayerBarVisible] = useState(false); // 뮤직플레이어바 올리기
 
@@ -31,56 +30,45 @@ const MusicPlayer = () => {
 
     // 스포티파이 토큰값, 노래추천 호출
     useEffect(() => {
-        const fetchToken = async () => {
-            const clientId = '';                // 클라이언트 아이디
-            const clientSecret = '';            // 클라이언트 비밀번호
-            const authString = `${clientId}:${clientSecret}`;
-            const authBase64 = window.btoa(authString);
-
+        const fetchSpotifyData = async () => {
             try {
-                const response = await axios.post('https://accounts.spotify.com/api/token', 'grant_type=client_credentials', {
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': `Basic ${authBase64}`
-                    }
-                });
-                return response.data.access_token;
+                // 백엔드 서버를 통해 토큰 요청
+                const tokenResponse = await axios.get('http://localhost:5000/spotify/token');
+                const accessToken = tokenResponse.data.accessToken;
+
+                // 토큰을 사용하여 추천 노래 목록 요청
+                const musicResponse = await axios.get(`http://localhost:5000/spotify/recommendations?token=${accessToken}`);
+                setSpotifyMusic(musicResponse.data);
             } catch (error) {
-                console.error('Spotify 토큰 요청 중 오류 발생:', error);
-                return null;
+                console.error('Spotify 데이터 요청 중 오류 발생:', error);
             }
         };
 
-        const fetchRecommendations = async (accessToken) => {
-            if (accessToken && spotifyMusic.length === 0) {
-                const apiUrl = 'https://api.spotify.com/v1/recommendations';
-                try {
-                    const response = await axios.get(apiUrl, {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`
-                        },
-                        params: {
-                            seed_genres: 'pop',
-                            limit: 13
-                        }
-                    });
-                    setSpotifyMusic(response.data.tracks);
-                } catch (error) {
-                    console.error('Spotify API 요청 중 오류 발생:', error);
-                }
-            }
-        };
-
-        const getTokenAndFetchRecommendations = async () => {
-            const token = await fetchToken();
-            if (token) {
-                fetchRecommendations(token);
-            }
-        };
-
-        getTokenAndFetchRecommendations();
+        fetchSpotifyData();
     }, []);
 
+    // youtube api 호출
+    const youtubeAPI = async (music, index) => {
+        const searchQuery = `${music.name} ${music.artists[0].name} official audio`;
+
+        try {
+            const response = await axios.get(`http://localhost:5000/youtube/search?q=${encodeURIComponent(searchQuery)}`);
+            setCurrentSong({
+                thumbnail: music.album.images[0].url,
+                title: music.name,
+                artist: music.artists[0].name,
+                playing: true
+            });
+
+            const videoId = response.data.id.videoId;
+            playVideo(videoId);
+            setMusicPlaying(true);
+            setCurrentSongIndex(index);
+            localStorage.setItem('currentSongIndex', index);
+        } catch (error) {
+            console.error('YouTube API 요청 중 오류 발생:', error);
+        }
+    };
 
     // youtube 비디오 호출
     useEffect(() => {
@@ -118,6 +106,12 @@ const MusicPlayer = () => {
 
     // 노래 상태 변경 시 호출되는 함수
     const onPlayerStateChange = (event) => {
+        if (event.data === window.YT.PlayerState.PLAYING) {
+            // 비디오 재생 시작 시, 총 재생 시간 설정
+            const duration = youtubePlayerRef.current.getDuration();
+            setTotalDuration(duration);
+        }
+
         if (event.data === window.YT.PlayerState.ENDED) {
             console.log("다음 노래 재생 확인");
             playNextSong(); // 노래가 끝나면 다음 노래 재생
@@ -165,42 +159,6 @@ const MusicPlayer = () => {
         }
     };
 
-
-    // YouTube API 호출
-    const youtubeAPI = async (music, index) => {
-        const searchQuery = `${music.name} ${music.artists[0].name}`;
-
-        try {
-            const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
-                params: {
-                    part: 'snippet',
-                    maxResults: 1,
-                    q: searchQuery + "audio", // 검색어
-                    type: 'video',
-                    videoCategoryId: '10', // 음악 카테고리
-                    key: ''         // 유튜브 api key
-                }
-            });
-
-            setCurrentSong({
-                thumbnail: music.album.images[0].url,
-                title: music.name,
-                artist: music.artists[0].name,
-                playing: true // 재생 중인지의 상태
-            });
-
-            const videoId = response.data.items[0].id.videoId;
-            playVideo(videoId);
-
-            setMusicPlaying(true);
-            setCurrentSongIndex(index);
-            localStorage.setItem('currentSongIndex', index); // index가 다음노래 호출시에 추적이안돼서 localStorage 사용
-        } catch (error) {
-            console.error('YouTube API 요청 중 오류 발생:', error);
-        }
-    };
-
-
     // YouTube 비디오 재생 함수
     const playVideo = (videoId) => {
         if (youtubePlayerRef.current) {
@@ -208,6 +166,8 @@ const MusicPlayer = () => {
             setIsPlayerBarVisible(true);
             youtubePlayerRef.current.loadVideoById(videoId);
             youtubePlayerRef.current.playVideo();
+
+
         } else {
             console.error("YouTube Player 인스턴스 없음");
         }
@@ -347,7 +307,6 @@ const MusicPlayer = () => {
                 </div>
             </div>
 
-            {/* 노래 클릭해서 재생시 뮤직플레이어 바 나타남 */}
             {isPlayerBarVisible && (
                 <MusicPlayerBar
                     playing={musicPlaying}
@@ -360,6 +319,7 @@ const MusicPlayer = () => {
                     progress={progress}
                     onProgressChange={handleProgressChange}
                     currentTime={currentTime}
+                    totalDuration={totalDuration}
                 />
             )}
         </div>
