@@ -8,21 +8,18 @@ import Sidebar from "../../components/Siderbar/Sidebar";
 import "./Search.scss";
 
 export default function Search() {
-  const [spotifyResult, setSpotifyResult] = useState("");
-  const [youtubeResult, setYoutubeResult] = useState("");
+  const [results, setResults] = useState({ spotify: null, youtube: null });
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get("q");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const youtube_api_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
-        console.log(youtube_api_url);
-        const res = await axios.get(youtube_api_url);
-        setYoutubeResult(res.data);
+    async function fetchData() {
+      if (!keyword) return;
 
+      try {
+        // YouTube API call
         const options = {
           method: "GET",
           url: "https://youtube-v31.p.rapidapi.com/search",
@@ -40,72 +37,41 @@ export default function Search() {
           },
         };
 
-        try {
-          const response = await axios.request(options);
-          console.log(response.data.items);
-          setYoutubeResult(response.data.items);
-        } catch (error) {
-          console.error(error);
-        }
+        const youtubeResponse = await axios.request(options);
+        setResults({ youtube: youtubeResponse.data.items });
+
+        // Spotify API call
+        const spotifyToken = localStorage.getItem("accessToken");
+        const spotifyResponse = await axios.get(
+          "https://api.spotify.com/v1/search",
+          {
+            headers: { Authorization: `Bearer ${spotifyToken}` },
+            params: { q: `artist:${keyword}`, type: "artist" },
+          }
+        );
+
+        // extract the Spotify artist ID and then make another call for top tracks
+        const artistId = spotifyResponse.data.artists.items[0].id;
+        const topTracksResponse = await axios.get(
+          `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
+          {
+            headers: { Authorization: `Bearer ${spotifyToken}` },
+          }
+        );
+
+        // Batch state update
+        setResults({
+          spotify: topTracksResponse.data.tracks,
+          youtube: youtubeResponse.data.items,
+        });
       } catch (error) {
-        console.error("YouTube API error: ", error);
+        console.error("API error: ", error);
       }
-
-      const spotifyToken = localStorage.getItem("accessToken");
-
-      async function searchSpotify(query, type) {
-        try {
-          const response = await axios.get(
-            "https://api.spotify.com/v1/search",
-            {
-              headers: {
-                Authorization: `Bearer ${spotifyToken}`,
-              },
-              params: {
-                q: query,
-                type: type,
-              },
-            }
-          );
-
-          // 검색 결과 출력
-          console.log(response.data);
-
-          // 가수 id 출력
-          const artistId = response.data.artists.items[0].id;
-          console.log(artistId);
-
-          const newResponse = await axios.get(
-            `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
-            {
-              headers: {
-                Authorization: `Bearer ${spotifyToken}`,
-              },
-              params: {
-                q: query,
-                type: type,
-              },
-            }
-          );
-
-          setSpotifyResult(newResponse.data.tracks);
-          // newResponse.data.tracks.map((item) => {
-          //   console.log(item.name);
-          //   console.log(item.album.images[2]);
-          //   console.log(item.album.name);
-          // });
-        } catch (error) {
-          console.error("Spotify Search API 요청 에러:", error);
-        }
-      }
-
-      searchSpotify(`artist:${keyword}`, "artist");
-    };
-
-    if (keyword) {
-      fetchData();
     }
+
+    fetchData();
   }, [keyword]);
+  const { spotify, youtube } = results;
 
   return (
     <div className="search">
@@ -114,12 +80,9 @@ export default function Search() {
         <Header />
         <div className="contents">
           <HashTag />
-          {/* 해시태그에 다양한 종류의 플레이리스트들을 추천하는건? 
-          my own ,forgotten ,weather ,mood, vibes,  */}
-          <SearchResult
-            spotifyResults={spotifyResult}
-            youtubeResults={youtubeResult}
-          />
+          {spotify && youtube && (
+            <SearchResult spotifyResults={spotify} youtubeResults={youtube} />
+          )}
         </div>
       </div>
     </div>
