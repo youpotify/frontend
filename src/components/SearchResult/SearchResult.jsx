@@ -26,7 +26,7 @@ export default function SearchResult(props) {
       </div>
       <div>
         <h3>동영상</h3>
-        {youtubeResult &&
+        {Array.isArray(youtubeResult) &&
           youtubeResult.map((item) => (
             <div className="video" key={item.id.videoId}>
               <img
