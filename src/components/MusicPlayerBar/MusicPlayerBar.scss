@@ -1,0 +1,102 @@
+.music-player-bar {
+  display: grid;
+  grid-template-columns: 1fr 9fr 1fr; /* 왼쪽, 중앙, 오른쪽 열 크기 설정 */
+  align-items: center;
+  position: fixed; /* 고정 위치 */
+  left: 0; /* 왼쪽 가장자리에 정렬 */
+  bottom: 0; /* 하단에 정렬 */
+  width: 100%; /* 전체 너비 */
+  padding: 0 35px 0 25px;
+  background-color: #333; /* 배경색 설정 */
+  color: white;
+  box-sizing: border-box;
+  height: 80px;
+  animation: slideUp 0.5s ease-out forwards;
+
+  .progress-bar {
+    position: absolute;
+    top: -2px; 
+    left: 0; 
+    width: 100%; 
+    height: 2px;
+    cursor: pointer;
+  }
+
+  .music-info {
+    margin-left: 15px;
+    text-align: left;
+   
+    .music-name{
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .music-artist{
+      font-size: 17px;
+      color: #999;
+      font-weight: bold;
+    }
+  }
+  .reaction-icons {
+    display: flex;
+    align-items: center;
+
+    .like-icon, .dislike-icon {
+        margin: 0px 0px 0px 30px; 
+        cursor: pointer; // 마우스 오버 시 포인터 변경
+        color: gray;
+        &:hover {
+            color: white; // 마우스 오버 시 색상 변경
+        }
+    }
+}
+}
+
+.player-info img {
+  border-radius: 3px; 
+}
+
+
+.music-player-bar > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* Chrome, Safari, Edge 웹페이지 환경*/
+.music-player-bar .player-extra input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+}
+
+.music-player-bar .player-extra input[type="range"]::-webkit-slider-thumb {
+  margin-top: -6px; /* 조절 막대를 track에 맞게 조정 */
+  cursor: pointer;
+  
+}
+
+.icon {
+  margin-right: 40px; /* 모든 아이콘에 동일한 오른쪽 마진 적용 */
+  font-size: 18px; 
+  cursor: pointer; 
+}
+
+.icon:last-child {
+  margin-right: 0; /* 마지막 아이콘에는 마진 적용 안 함 */
+}
+
+.volume-icon {
+  margin-right: 10px;
+  font-size: 20px; /* 아이콘 크기 설정 */
+}
+
+@keyframes slideUp {
+  from {
+      transform: translateY(100%); /* 시작 위치 */
+      opacity: 0;
+  }
+  to {
+      transform: translateY(0); /* 최종 위치 */
+      opacity: 1;
+  }
+}
