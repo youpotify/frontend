@@ -22,11 +22,14 @@ export default function Callback() {
 
   const connectToSpotify = async () => {
     try {
-      const response = await axios.get(`${SERVER_URL}/spotify/oauths/pkce`, {
-        params: {
-          text: clientId,
-        },
-      });
+      const response = await axios.get(
+        `${SERVER_URL}/api/oauths/spotify/pkce`,
+        {
+          params: {
+            text: clientId,
+          },
+        }
+      );
 
       window.location.href = response.data.redirect_uri;
     } catch (error) {
@@ -36,9 +39,10 @@ export default function Callback() {
 
   const getTokens = async () => {
     if (authCode) {
+      console.log(authCode);
       try {
         const response = await axios.get(
-          `${SERVER_URL}/spotify/oauths/tokens`,
+          `${SERVER_URL}/api/oauths/spotify/tokens`,
           {
             params: {
               text: authCode,
@@ -47,6 +51,8 @@ export default function Callback() {
         );
 
         const data = response.data;
+        localStorage.setItem("accessToken", data.tokens.access_token);
+        localStorage.setItem("refreshToken", data.tokens.refresh_token);
 
         if (data) {
           alert("oauth 성공!");

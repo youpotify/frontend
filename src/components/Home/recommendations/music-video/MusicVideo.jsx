@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
 import "./MusicVideo.scss";
 
 export default function MusicVideo() {
-  const youtubeAPIKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-
   const [data, setData] = useState([]);
 
   const fetchVideos = () => {
     axios
       .get(
-        `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&key=${youtubeAPIKey}`
+        `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
       )
       .then((res) => {
         setData(res.data.items);
