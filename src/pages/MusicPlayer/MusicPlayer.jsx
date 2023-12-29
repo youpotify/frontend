@@ -33,11 +33,11 @@ const MusicPlayer = () => {
         const fetchSpotifyData = async () => {
             try {
                 // 백엔드 서버를 통해 토큰 요청
-                const tokenResponse = await axios.get('http://localhost:3001/spotify/token');
+                const tokenResponse = await axios.get('http://localhost:5000/spotify/token');
                 const accessToken = tokenResponse.data.accessToken;
 
                 // 토큰을 사용하여 추천 노래 목록 요청
-                const musicResponse = await axios.get(`http://localhost:3001/spotify/recommendations?token=${accessToken}`);
+                const musicResponse = await axios.get(`http://localhost:5000/spotify/recommendations?token=${accessToken}`);
                 setSpotifyMusic(musicResponse.data);
             } catch (error) {
                 console.error('Spotify 데이터 요청 중 오류 발생:', error);
@@ -52,7 +52,7 @@ const MusicPlayer = () => {
         const searchQuery = `${music.name} ${music.artists[0].name} official audio`;
 
         try {
-            const response = await axios.get(`http://localhost:3001/youtube/search?q=${encodeURIComponent(searchQuery)}`);
+            const response = await axios.get(`http://localhost:5000/youtube/search?q=${encodeURIComponent(searchQuery)}`);
             setCurrentSong({
                 thumbnail: music.album.images[0].url,
                 title: music.name,
