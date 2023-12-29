@@ -19,12 +19,14 @@ function Artist() {
         if (!artistName) return;
 
         try {
-            const response = await axios.get(`http://localhost:3000/search`, {
+            const response = await axios.get(`http://localhost:5000/search`, {
                 params: {
                     term: artistName
                 }
             });
             setArtistInfo(response.data);
+            // console.log(response.data);
+            //console.log(response);
             //setMaxIndex(artistInfo.albums.length - 5);
             console.log(`artistInfo: ${artistInfo}`);
         } catch (err) {
@@ -33,6 +35,7 @@ function Artist() {
         }
     };
 
+    console.log(artistInfo);
 
     //검색 관련 상태관리 및 함수
     const [searchTerm, setSearchTerm] = useState('');
@@ -52,7 +55,7 @@ function Artist() {
 
     //슬라이더 관련 상태관리
     const [currentStartIndex, setCurrentStartIndex] = React.useState(0);
-    const maxIndex = !artistInfo? 5 : artistInfo.albums.length - 5;
+    const maxIndex = !artistInfo? 5 : artistInfo.spotify.albums.length - 5;
 
     const moveLeft = () => {
         console.log(maxIndex);
@@ -64,6 +67,7 @@ function Artist() {
         setCurrentStartIndex(currentStartIndex => Math.min(maxIndex, currentStartIndex + 1));
     };
 
+
     if(!artistInfo) {
         return <div>데이터 없음</div>
     }
@@ -74,7 +78,7 @@ function Artist() {
         <div className="backgroud"
             style={{ 
                 backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%),
-                url(${artistInfo.img})` }}>
+                url(${artistInfo.spotify.img})` }}>
         </div>
 
         <div className="container">
@@ -85,7 +89,7 @@ function Artist() {
             </div>
 
             <section className="artist-content inner-cont">
-                <h1>{artistInfo.name}</h1>
+                <h1>{artistInfo.spotify.name}</h1>
                 {/* <p className={isExpanded ? 'expanded' : '' }>{artistData.info}</p> */}
                 <button className="outline-btns" onClick={toggleText}>{isExpanded ? '접기' : '더보기'}</button>
 
@@ -98,12 +102,12 @@ function Artist() {
             <section className="top-songs inner-cont">
                 <h2>노래</h2>
                 <ul>
-                    {artistInfo.songs.slice(0,5).map((s,index)=>(
+                    {artistInfo.spotify.songs.slice(0,5).map((s,index)=>(
                         <li key={index} className='song'>
                             <ul>
                                 <img className='song-img' src={s.album.images[0].url}/>
                                 <li className='song-title'>{s.name}</li>
-                                <li className='song-artist'>{artistInfo.name}</li>
+                                <li className='song-artist'>{artistInfo.spotify.name}</li>
                                 <li className='song-album'>{s.album.name}</li>
                                 <li className='song-icons'>
                                     <span class="material-icons">thumb_up</span>
@@ -122,14 +126,16 @@ function Artist() {
                 <h2>앨범</h2>
                 <div className='album-view'>
                     <ul className='album-list' style={{ transform: `translateX(-${currentStartIndex * 20}%)` }}>
-                        {artistInfo.albums.map((album, index)=>(
+                        {artistInfo.spotify.albums.map((album, index)=>(
                             <li key={index} className='album'>
                                 <div className='album-img-wrapper'>
                                     <img className='album-img' src={album.images[0].url}/>
                                     <span className='play-icon'>▶</span>
                                 </div>
                                 
-                                <span><Link to={`/album/${album.id}`}>{album.name}</Link></span>
+                                <span>
+                                    <Link to={`/album/${album.name}`} state={{data:album, youtubeId: artistInfo.youtubeId}}>{album.name}</Link>
+                                </span>
                                 {/* <span>{album.release_date}</span> */}
                             </li>
                         ))}
