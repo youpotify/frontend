@@ -1,3 +1,16 @@
 .search-result {
-  background-color: beige;
+  border: 1px solid yellow;
+}
+
+.song {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid white;
+
+  img {
+    padding: 2px 6px;
+  }
+  div {
+    padding: 2px 6px;
+  }
 }

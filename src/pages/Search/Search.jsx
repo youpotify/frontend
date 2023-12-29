@@ -7,7 +7,7 @@ import SearchResult from "../../components/SearchResult/SearchResult";
 import Sidebar from "../../components/Siderbar/Sidebar";
 import "./Search.scss";
 
-export default async function Search() {
+export default function Search() {
   const [searchResult, setSearchResult] = useState("");
 
   const location = useLocation();
@@ -16,39 +16,39 @@ export default async function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        // const youtube_api_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
-        // console.log(youtube_api_url);
-        // const res = await axios.get(youtube_api_url);
-        // setSearchResult(res.data);
+      // try {
+      // const youtube_api_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
+      // console.log(youtube_api_url);
+      // const res = await axios.get(youtube_api_url);
+      // setSearchResult(res.data);
 
-        const options = {
-          method: "GET",
-          url: "https://youtube-v31.p.rapidapi.com/search",
-          params: {
-            q: keyword,
-            part: "snippet,id",
-            regionCode: "KR",
-            maxResults: "3",
-            order: "date",
-          },
-          headers: {
-            "X-RapidAPI-Key":
-              "2bee14e051mshbd976b2ec07a273p1c69d0jsna02a62834802",
-            "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-          },
-        };
+      //   const options = {
+      //     method: "GET",
+      //     url: "https://youtube-v31.p.rapidapi.com/search",
+      //     params: {
+      //       q: keyword,
+      //       part: "snippet,id",
+      //       regionCode: "KR",
+      //       maxResults: "3",
+      //       order: "date",
+      //     },
+      //     headers: {
+      //       "X-RapidAPI-Key":
+      //         "2bee14e051mshbd976b2ec07a273p1c69d0jsna02a62834802",
+      //       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+      //     },
+      //   };
 
-        try {
-          const response = await axios.request(options);
-          console.log(response.data.items);
-          setSearchResult(response.data.items);
-        } catch (error) {
-          console.error(error);
-        }
-      } catch (error) {
-        console.error("YouTube API error: ", error);
-      }
+      //   try {
+      //     const response = await axios.request(options);
+      //     console.log(response.data.items);
+      //     setSearchResult(response.data.items);
+      //   } catch (error) {
+      //     console.error(error);
+      //   }
+      // } catch (error) {
+      //   console.error("YouTube API error: ", error);
+      // }
 
       const spotifyToken = localStorage.getItem("accessToken");
 
@@ -69,12 +69,37 @@ export default async function Search() {
 
           // 검색 결과 출력
           console.log(response.data);
+
+          // 가수 id 출력
+          const artistId = response.data.artists.items[0].id;
+          console.log(artistId);
+
+          const newResponse = await axios.get(
+            `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
+            {
+              headers: {
+                Authorization: `Bearer ${spotifyToken}`,
+              },
+              params: {
+                q: query,
+                type: type,
+              },
+            }
+          );
+
+          setSearchResult(newResponse.data.tracks);
+
+          // newResponse.data.tracks.map((item) => {
+          //   console.log(item.name);
+          //   console.log(item.album.images[2]);
+          //   console.log(item.album.name);
+          // });
         } catch (error) {
           console.error("Spotify Search API 요청 에러:", error);
         }
       }
 
-      searchSpotify("artist:아이유", "artist");
+      searchSpotify(`artist:${keyword}`, "artist");
     };
 
     if (keyword) {
