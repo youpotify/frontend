@@ -8,7 +8,8 @@ import Sidebar from "../../components/Siderbar/Sidebar";
 import "./Search.scss";
 
 export default function Search() {
-  const [searchResult, setSearchResult] = useState("");
+  const [spotifyResult, setSpotifyResult] = useState("");
+  const [youtubeResult, setYoutubeResult] = useState("");
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -16,39 +17,39 @@ export default function Search() {
 
   useEffect(() => {
     const fetchData = async () => {
-      // try {
-      // const youtube_api_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
-      // console.log(youtube_api_url);
-      // const res = await axios.get(youtube_api_url);
-      // setSearchResult(res.data);
+      try {
+        const youtube_api_url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
+        console.log(youtube_api_url);
+        const res = await axios.get(youtube_api_url);
+        setYoutubeResult(res.data);
 
-      //   const options = {
-      //     method: "GET",
-      //     url: "https://youtube-v31.p.rapidapi.com/search",
-      //     params: {
-      //       q: keyword,
-      //       part: "snippet,id",
-      //       regionCode: "KR",
-      //       maxResults: "3",
-      //       order: "date",
-      //     },
-      //     headers: {
-      //       "X-RapidAPI-Key":
-      //         "2bee14e051mshbd976b2ec07a273p1c69d0jsna02a62834802",
-      //       "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-      //     },
-      //   };
+        const options = {
+          method: "GET",
+          url: "https://youtube-v31.p.rapidapi.com/search",
+          params: {
+            q: keyword,
+            part: "snippet,id",
+            regionCode: "KR",
+            maxResults: "3",
+            order: "date",
+          },
+          headers: {
+            "X-RapidAPI-Key":
+              "2bee14e051mshbd976b2ec07a273p1c69d0jsna02a62834802",
+            "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
+          },
+        };
 
-      //   try {
-      //     const response = await axios.request(options);
-      //     console.log(response.data.items);
-      //     setSearchResult(response.data.items);
-      //   } catch (error) {
-      //     console.error(error);
-      //   }
-      // } catch (error) {
-      //   console.error("YouTube API error: ", error);
-      // }
+        try {
+          const response = await axios.request(options);
+          console.log(response.data.items);
+          setYoutubeResult(response.data.items);
+        } catch (error) {
+          console.error(error);
+        }
+      } catch (error) {
+        console.error("YouTube API error: ", error);
+      }
 
       const spotifyToken = localStorage.getItem("accessToken");
 
@@ -87,8 +88,7 @@ export default function Search() {
             }
           );
 
-          setSearchResult(newResponse.data.tracks);
-
+          setSpotifyResult(newResponse.data.tracks);
           // newResponse.data.tracks.map((item) => {
           //   console.log(item.name);
           //   console.log(item.album.images[2]);
@@ -116,7 +116,10 @@ export default function Search() {
           <HashTag />
           {/* 해시태그에 다양한 종류의 플레이리스트들을 추천하는건? 
           my own ,forgotten ,weather ,mood, vibes,  */}
-          <SearchResult props={searchResult} />
+          <SearchResult
+            spotifyResults={spotifyResult}
+            youtubeResults={youtubeResult}
+          />
         </div>
       </div>
     </div>
