@@ -13,64 +13,32 @@ export default function Search() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const keyword = searchParams.get("q");
+  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
+    console.log("effect 실행");
     async function fetchData() {
-      if (!keyword) return;
+      if (!keyword || !accessToken) return;
 
       try {
-        // YouTube API call
-        const options = {
-          method: "GET",
-          url: "https://youtube-v31.p.rapidapi.com/search",
-          params: {
-            q: keyword,
-            part: "snippet,id",
-            regionCode: "KR",
-            maxResults: "3",
-            order: "date",
-          },
-          headers: {
-            "X-RapidAPI-Key":
-              "2bee14e051mshbd976b2ec07a273p1c69d0jsna02a62834802",
-            "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com",
-          },
-        };
-
-        const youtubeResponse = await axios.request(options);
-        setResults({ youtube: youtubeResponse.data.items });
-
-        // Spotify API call
-        const spotifyToken = localStorage.getItem("accessToken");
-        const spotifyResponse = await axios.get(
-          "https://api.spotify.com/v1/search",
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/search`,
           {
-            headers: { Authorization: `Bearer ${spotifyToken}` },
-            params: { q: `artist:${keyword}`, type: "artist" },
+            headers: { Authorization: `Bearer ${accessToken}` },
+            params: {
+              text: keyword,
+            },
           }
         );
-
-        // extract the Spotify artist ID and then make another call for top tracks
-        const artistId = spotifyResponse.data.artists.items[0].id;
-        const topTracksResponse = await axios.get(
-          `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
-          {
-            headers: { Authorization: `Bearer ${spotifyToken}` },
-          }
-        );
-
-        // Batch state update
-        setResults({
-          spotify: topTracksResponse.data.tracks,
-          youtube: youtubeResponse.data.items,
-        });
+        setResults(response.data.searchResult);
       } catch (error) {
-        console.error("API error: ", error);
+        console.error("Error fetching search results", error);
       }
     }
 
     fetchData();
-  }, [keyword]);
+  }, [keyword, accessToken]);
+
   const { spotify, youtube } = results;
 
   return (
