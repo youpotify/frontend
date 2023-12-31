@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const SERVER_URL = "http://localhost:8000";
+const SERVER_URL = process.env.REACT_APP_API_URL;
 
 export default function Callback() {
   const navigate = useNavigate();
@@ -71,39 +71,13 @@ export default function Callback() {
   }, [authCode]);
 
   return (
-    <SpotifyConnectionBtn>
+    <div className="spotify-connection-btn">
       <button onClick={connectToSpotify}>{text}</button>
       <input
         placeholder="enter your Spotify User ID here"
         value={clientId}
         onChange={(e) => setclientId(e.target.value)}
       />
-    </SpotifyConnectionBtn>
+    </div>
   );
 }
-
-const SpotifyConnectionBtn = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-  button {
-    background-color: lightblue;
-    border: none;
-    border-radius: 20px;
-    height: 50px;
-    font-size: 30px;
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-    // &:hover {
-    // background-color: skyblue;
-    // }
-
-    &:active {
-      background-color: deepskyblue;
-    }
-  }
-`;
