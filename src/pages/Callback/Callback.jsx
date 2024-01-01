@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
+import "./Callback.scss";
 
 const SERVER_URL = process.env.REACT_APP_API_URL;
 
@@ -22,14 +22,11 @@ export default function Callback() {
 
   const connectToSpotify = async () => {
     try {
-      const response = await axios.get(
-        `${SERVER_URL}/api/oauths/spotify/pkce`,
-        {
-          params: {
-            text: clientId,
-          },
-        }
-      );
+      const response = await axios.get(`${SERVER_URL}/oauths/spotify/pkce`, {
+        params: {
+          text: clientId,
+        },
+      });
 
       window.location.href = response.data.redirect_uri;
     } catch (error) {
@@ -39,10 +36,9 @@ export default function Callback() {
 
   const getTokens = async () => {
     if (authCode) {
-      console.log(authCode);
       try {
         const response = await axios.get(
-          `${SERVER_URL}/api/oauths/spotify/tokens`,
+          `${SERVER_URL}/oauths/spotify/tokens`,
           {
             params: {
               text: authCode,
