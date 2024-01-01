@@ -14,14 +14,17 @@ export default function Search() {
 
   return (
     <div className="search-bar">
-      <span class="material-symbols-outlined" id="search-btn">
-        search
-      </span>
+      <div className="search-icon-box">
+        <div class="material-symbols-outlined" id="search-icon">
+          search
+        </div>
+      </div>
       <form onSubmit={(e) => SearchKeyword(e)}>
         <input
           placeholder="노래, 앨범, 아티스트, 팟캐스트 검색"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
+          id="search-input"
         />
       </form>
       {keyword && (

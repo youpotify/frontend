@@ -12,11 +12,19 @@ export default function Header() {
 
   return (
     <div className="header">
-      {/* <div className="left-items">
-        <img src="menu.png" alt="menu button" id="menu-btn" />
-        <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
-      </div> */}
-      <div>
+      <div className="left-content">
+        <div className="menu">
+          <div
+            className="material-symbols-outlined"
+            id="menu-btn"
+            onClick={() => setIsMenuClicked(true)}
+          >
+            menu
+          </div>
+        </div>
+        <div className="youpotify-logo">spotify</div>
+      </div>
+      <div className="center-content">
         <SearchBar />
       </div>
       <div>

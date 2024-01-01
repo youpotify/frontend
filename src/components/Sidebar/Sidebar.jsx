@@ -16,9 +16,6 @@ export default function Sidebar() {
             >
               menu
             </span>
-            {/* <span> */}
-            {/* <img src="youpotify.png" alt="google logo" id="youpotify-btn" /> */}
-            {/* </span> */}
           </div>
           <div className="menu-list-clicked">
             <span className="material-symbols-outlined">home</span>
@@ -48,18 +45,6 @@ export default function Sidebar() {
     </div>
   ) : (
     <div className="sidebar">
-      <div>
-        <span
-          className="material-symbols-outlined"
-          id="menu-toggle"
-          onClick={() => setIsMenuClicked(true)}
-        >
-          menu
-        </span>
-        {/* <span>
-          <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
-        </span> */}
-      </div>
       <div className="menu-list">
         <div className="material-symbols-outlined">home</div>
         <div id="menu-item-text">홈</div>
