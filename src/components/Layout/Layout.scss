@@ -10,13 +10,6 @@
   z-index: 100; // Header가 다른 요소 위에 레이어
 }
 
-.sidebar {
-  position: fixed;
-  width: 100px;
-  top: 64px;
-  height: 100%;
-}
-
 .content {
   flex: 1;
   background-color: var(--color--black);

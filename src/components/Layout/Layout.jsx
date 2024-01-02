@@ -1,16 +1,20 @@
-import React from "react";
-import "./Layout.scss";
+import React, { useState } from "react";
 import Header from "../Header/Header";
 import Sidebar from "../Sidebar/Sidebar";
+import "./Layout.scss";
 
 export default function Layout({ children }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
     <div className="layout">
-      <Header className="header" />
-      <div>
-        <Sidebar className="sidebar" />
-        <div className="content">{children}</div>
-      </div>
+      <Header toggleSidebar={toggleSidebar} />
+      <Sidebar isOpen={sidebarOpen} />
+      <div className="content">{children}</div>
     </div>
   );
 }
