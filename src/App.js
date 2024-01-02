@@ -9,8 +9,6 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
 import Callback from "./pages/Callback/Callback";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
 import Layout from "./components/Layout/Layout";
 
 export default function App() {

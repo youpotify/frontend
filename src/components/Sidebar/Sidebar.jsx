@@ -19,16 +19,19 @@ export default function Sidebar({ isOpen }) {
               <span className="material-symbols-outlined">recommend</span>
               <span id="menu-item-text-open">추천곡</span>
             </div>
-            <hr />
-            <div className="add-playlist" id="menu-item">
-              + 새 재생목록
+          </div>
+
+          <hr className="divider" />
+          <div className="playlist-box">
+            <div className="add-playlist">
+              <div>+ 새 재생목록</div>
             </div>
             <div className="playlist">
-              <div id="menu-item">좋아요 표시한 음악</div>
-              <div id="menu-item">재생목록1</div>
-              <div id="menu-item">재생목록2</div>
-              <div id="menu-item">재생목록3</div>
-              <div id="menu-item">재생목록4</div>
+              <div className="menu-item-open">좋아요 표시한 음악</div>
+              <div className="menu-item-open">재생목록1</div>
+              <div className="menu-item-open">재생목록2</div>
+              <div className="menu-item-open">재생목록3</div>
+              <div className="menu-item-open">재생목록4</div>
             </div>
           </div>
         </div>
