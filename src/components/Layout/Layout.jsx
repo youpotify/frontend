@@ -10,11 +10,13 @@ export default function Layout({ children }) {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const contentClassName = `content${sidebarOpen ? "-sidebar-open" : ""}`;
+
   return (
     <div className="layout">
       <Header toggleSidebar={toggleSidebar} />
       <Sidebar isOpen={sidebarOpen} />
-      <div className="content">{children}</div>
+      <div className={contentClassName}>{children}</div>
     </div>
   );
 }

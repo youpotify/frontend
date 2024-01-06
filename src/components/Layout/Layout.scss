@@ -14,8 +14,17 @@
   flex: 1;
   background-color: var(--color--black);
   padding: 2.5rem 5rem;
-  margin-left: 200px;
-  margin-top: 90px; // Header의 높이만큼 마진 설정
+  margin-top: 64px; // Header의 높이만큼 마진 설정
   overflow-y: auto; // 세로 스크롤 활성화
   height: calc(100vh - 90px); // 뷰포트 높이에서 Header 높이 뺀 값
+}
+
+.content-sidebar-open {
+  flex: 1;
+  background-color: var(--color--black);
+  padding: 2.5rem 5rem;
+  margin-left: 200px;
+  margin-top: 64px;
+  overflow-y: auto;
+  height: calc(100vh - 90px);
 }
