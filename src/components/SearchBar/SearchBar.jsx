@@ -35,7 +35,7 @@ export default function Search() {
       {keyword && (
         <span
           class="material-symbols-outlined"
-          id="delete-btn"
+          id="delete-button"
           onClick={() => setKeyword("")}
         >
           close
