@@ -17,7 +17,7 @@ function Album() {
         if (!albumId) return;
 
         try{
-            const response = await axios.get(`http://localhost:3000/album`,{
+            const response = await axios.get(`http://localhost:8000/album`,{
                 params:{
                     id : albumId
                 }
