@@ -11,7 +11,9 @@ export default function Home() {
       <HashTag />
       {/* 해시태그에 다양한 종류의 플레이리스트들을 추천하는건? 
           my own ,forgotten ,weather ,mood, vibes,  */}
-      <MusicVideo />
+      <div className="section">
+        <MusicVideo />
+      </div>
 
       <div>추천 플레이리스트</div>
 

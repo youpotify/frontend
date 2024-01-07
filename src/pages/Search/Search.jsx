@@ -43,9 +43,7 @@ export default function Search() {
 
   return (
     <div className="search">
-      <Sidebar />
       <div className="body">
-        <Header />
         <div className="contents">
           <HashTag />
           {spotify && youtube && (
