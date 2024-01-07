@@ -1,7 +1,5 @@
 import React from "react";
 import "./Home.scss";
-import Header from "../../components/Header/Header";
-import Sidebar from "../../components/Sidebar/Sidebar";
 import HashTag from "../../components/Home/Hashtag";
 import MusicVideo from "../../components/Home/recommendations/music-video/MusicVideo";
 
