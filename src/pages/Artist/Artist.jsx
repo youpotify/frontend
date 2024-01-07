@@ -9,9 +9,78 @@ function Artist() {
     const [error, setError] = useState('');
     const {name} = useParams();
 
+
+    // 좋아요와 싫어요 상태 추가
+    const [likedSongs, setLikedSongs] = useState([]);
+    const [hateSongs, setHateSongs] = useState([]);
+
+
+    // 좋아요 버튼 클릭 핸들러
+    const handleThumbUpClick = (song) => {
+        let newLikedSongs = [...likedSongs];
+        let newHateSongs = [...hateSongs];
+        
+        const songIndexInLiked = newLikedSongs.findIndex(s => s.id === song.id);
+        const songIndexInHated = newHateSongs.findIndex(s => s.id === song.id);
+    
+        // 좋아요 상태 업데이트
+        if (songIndexInLiked > -1) { //이미 있는 경우 좋아요 취소하기
+            newLikedSongs.splice(songIndexInLiked, 1);
+        } else {
+            newLikedSongs.push(song);
+            // 싫어요 목록에서는 제거 (좋아요와 싫어요 동시에 불가능하게)
+            if (songIndexInHated > -1) {
+                newHateSongs.splice(songIndexInHated, 1);
+            }
+        }
+    
+        setLikedSongs(newLikedSongs);
+        setHateSongs(newHateSongs);
+        localStorage.setItem('likedSongs', JSON.stringify(newLikedSongs));
+        localStorage.setItem('hateSongs', JSON.stringify(newHateSongs));
+    };
+
+    // 싫어요 버튼 클릭 핸들러
+    const handleHateSongClick = (song) => {
+        let newLikedSongs = [...likedSongs];
+        let newHateSongs = [...hateSongs];
+        
+        const songIndexInLiked = newLikedSongs.findIndex(s => s.id === song.id);
+        const songIndexInHated = newHateSongs.findIndex(s => s.id === song.id);
+    
+        // 싫어요 상태 업데이트
+        if (songIndexInHated > -1) { //이미 싫어요를 눌렀을 경우 싫어요리스트에서 제거
+            newHateSongs.splice(songIndexInHated, 1);
+        } else {
+            newHateSongs.push(song);
+            // 싫어요를 눌렀을 경우, 좋아요 리스트에 해당곡이 있으면 좋아요 목록에서 제거
+            if (songIndexInLiked > -1) {
+                newLikedSongs.splice(songIndexInLiked, 1);
+            }
+        }
+    
+        setLikedSongs(newLikedSongs);
+        setHateSongs(newHateSongs);
+        localStorage.setItem('likedSongs', JSON.stringify(newLikedSongs));
+        localStorage.setItem('hateSongs', JSON.stringify(newHateSongs));
+    };
+
     useEffect(()=>{
         fetchArtistInfo(name);
+        setLikedSongs(JSON.parse(localStorage.getItem('likedSongs') || '[]'));
+        setHateSongs(JSON.parse(localStorage.getItem('hateSongs') || '[]'));
     }, [name]);
+
+    //렌더링시 좋아요된 곡인지 확인
+    const isLikedSong = (song) => {
+        const likedSongs = JSON.parse(localStorage.getItem('likedSongs') || '[]');
+        return likedSongs.some(s => s.id === song.id);
+    };
+
+    const isHateSong = (song) => {
+        const hateSongs = JSON.parse(localStorage.getItem('hateSongs') || '[]');
+        return hateSongs.some(s => s.id === song.id);
+    }
 
     // 스포티파이 API로부터 아티스트 정보 가져오기
     const fetchArtistInfo = async (artistName) => {
@@ -19,7 +88,7 @@ function Artist() {
         if (!artistName) return;
 
         try {
-            const response = await axios.get(`http://localhost:5000/search`, {
+            const response = await axios.get(`http://localhost:8000/search`, {
                 params: {
                     term: artistName
                 }
@@ -82,11 +151,11 @@ function Artist() {
         </div>
 
         <div className="container">
-            <div className="search-bar">
+            {/* <div className="search-bar">
                 <input type="text" placeholder="검색..." value={searchTerm} 
                     onChange={(e) => setSearchTerm(e.target.value)}/>
                 <button onClick={handleSearch}></button>
-            </div>
+            </div> */}
 
             <section className="artist-content inner-cont">
                 <h1>{artistInfo.spotify.name}</h1>
@@ -103,15 +172,15 @@ function Artist() {
                 <h2>노래</h2>
                 <ul>
                     {artistInfo.spotify.songs.slice(0,5).map((s,index)=>(
-                        <li key={index} className='song'>
+                        <li key={index} className='song-li'>
                             <ul>
                                 <img className='song-img' src={s.album.images[0].url}/>
                                 <li className='song-title'>{s.name}</li>
                                 <li className='song-artist'>{artistInfo.spotify.name}</li>
                                 <li className='song-album'>{s.album.name}</li>
                                 <li className='song-icons'>
-                                    <span class="material-icons">thumb_up</span>
-                                    <span class="material-icons">thumb_down</span>
+                                    <span class={isLikedSong(s) ? "material-icons" : "material-symbols-outlined"} onClick={() => handleThumbUpClick(s)}>thumb_up</span>
+                                    <span class={isHateSong(s) ? "material-icons" : "material-symbols-outlined"} onClick={() => handleHateSongClick(s)}>thumb_down</span>
                                     <span class="material-icons">add_box</span>
                                     <span class="material-icons">share</span>
                                 </li>

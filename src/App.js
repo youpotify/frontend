@@ -8,13 +8,16 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
+
 import Callback from "./pages/Callback/Callback";
+
 
 export default function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/artist/:name" element={<Artist />} />

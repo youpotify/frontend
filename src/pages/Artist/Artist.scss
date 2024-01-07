@@ -136,7 +136,7 @@ a{
                 padding-left: 0;
             }
     
-            .song{
+            .song-li{
                 width: 95%;
                 margin-bottom: 5px;
                 font-size: 14px;
@@ -162,6 +162,11 @@ a{
     
                     .song-icons{
                         .material-icons{
+                            margin-right: 10px;
+                        }
+
+                        .material-symbols-outlined{
+                            font-size: 14px;
                             margin-right: 10px;
                         }
                     }
