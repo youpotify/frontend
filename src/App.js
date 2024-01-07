@@ -8,8 +8,6 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
-import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
 import Callback from "./pages/Callback/Callback";
 
 
