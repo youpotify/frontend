@@ -1,0 +1,21 @@
+.spotify-connection-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  button {
+    background-color: lightblue;
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:active {
+      background-color: deepskyblue;
+    }
+  }
+}
