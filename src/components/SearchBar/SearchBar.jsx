@@ -7,8 +7,7 @@ export default function Search() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState("");
 
-  function SearchKeyword(e) {
-    e.preventDefault();
+  function SearchKeyword() {
     navigate(`/search?q=${encodeURIComponent(keyword)}`);
   }
 
@@ -19,14 +18,17 @@ export default function Search() {
           search
         </div>
       </div>
-      <form onSubmit={(e) => SearchKeyword(e)}>
-        <input
-          placeholder="노래, 앨범, 아티스트, 팟캐스트 검색"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-          id="search-input"
-        />
-      </form>
+
+      <input
+        placeholder="노래, 앨범, 아티스트, 팟캐스트 검색"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") SearchKeyword();
+        }}
+        id="search-input"
+      />
+
       {keyword && (
         <span
           class="material-symbols-outlined"
