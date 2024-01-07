@@ -24,7 +24,10 @@ export default function Search() {
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") SearchKeyword();
+          if (e.key === "Enter") {
+            if (keyword === "");
+            else SearchKeyword();
+          }
         }}
         id="search-input"
       />
