@@ -1,14 +1,16 @@
 .home {
-  display: flex;
-  background-color: grey;
-}
-
-.body {
   flex: 1;
   background-color: var(--color--black);
-}
-
-.home_contents {
   padding: 2.5rem 5rem;
   border: 2px solid greenyellow;
+}
+
+.section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 16px 0 8px 0;
+  gap: 24px;
+  padding-bottom: 0;
 }

@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import "./Header.scss";
 import Weather from "../Weather/Weather";
 
-export default function Header() {
+export default function Header({ toggleSidebar }) {
   const navigate = useNavigate();
 
   function NavigateToProfile() {
@@ -20,11 +20,19 @@ export default function Header() {
 
   return (
     <div className="header">
-      {/* <div className="left-items">
-        <img src="menu.png" alt="menu button" id="menu-btn" />
-        <img src="youpotify.png" alt="google logo" id="youpotify-btn" />
-      </div> */}
-      <div>
+      <div className="left-content">
+        <div className="menu">
+          <div
+            className="material-symbols-outlined"
+            id="menu-button"
+            onClick={toggleSidebar}
+          >
+            menu
+          </div>
+        </div>
+        <div className="youpotify-logo">youpotify</div>
+      </div>
+      <div className="center-content">
         <SearchBar />
       </div>
       <div>
@@ -32,7 +40,11 @@ export default function Header() {
           weather ? "날씨" : <Weather/>
         }</span>
         {/* 클릭 시 날씨와 함께 관련 플레이리스트 팝업? */}
-        <img src="profile.png" onClick={NavigateToProfile} id="profile-btn" />
+        <img
+          src="profile.png"
+          onClick={NavigateToProfile}
+          className="profile-button"
+        />
       </div>
     </div>
   );

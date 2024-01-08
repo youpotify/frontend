@@ -5,27 +5,66 @@
   align-items: center;
   margin: auto 0;
   border: 2px solid greenyellow;
-}
-
-.header div {
-  padding: 1rem;
-}
-
-.header div span {
-  // background-color: azure;
-  // padding: 1rem;
   color: white;
 }
 
-.left-items {
-  // display: grid;
-  // grid-template-columns: 1fr 2fr;
-  border: 2px solid greenyellow;
+.left-content {
+  padding-left: 16px;
+  display: flex;
+  align-items: center;
+  width: max(72px, 148px);
+  flex-shrink: 0;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-#menu-btn {
-  width: 24px;
+.menu {
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  margin-right: 12px;
+  box-sizing: border-box;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+}
+
+.youpotify-logo {
+  display: block;
   height: 24px;
+  width: 80px;
+}
+
+.center-content {
+  display: flex;
+  position: relative;
+  justify-content: flex-start;
+  padding-left: 100px;
+  flex-shrink: 1;
+  padding: 8px 0;
+  height: 64px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.right-content {
+  position: static;
+  padding-right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#menu-button {
+  width: 24px, 100%;
+  height: 24px, 100%;
+}
+
+#menu-button:hover {
+  background-color: rgb(150, 150, 150);
+  opacity: 0.8;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 #youpotify-btn {
@@ -33,7 +72,18 @@
   height: 24px;
 }
 
-#profile-btn {
+.weather-button {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-sizing: border-box;
+  width: 24px;
+  height: 32px;
+  min-width: 40px;
+}
+
+.profile-button {
   width: 26px;
-  height: 24px;
+  height: 26px;
 }

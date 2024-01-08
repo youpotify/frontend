@@ -1,7 +1,54 @@
 .music-video {
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
   color: white;
+  border: 1px solid greenyellow;
+}
+
+.music-video .carousel-container {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.music-video .item-container {
+  min-width: 320px;
+}
+
+.header-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  max-width: min(calc(100vw - 112px - 72px - 12px), 1478px);
+  margin: 0 auto;
+  gap: 24px;
+  padding-bottom: 0;
+}
+
+.button-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+
+  button {
+    display: inline-block;
+    position: relative;
+    outline: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: solid 1px rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: white;
+    cursor: pointer;
+
+    div {
+      font-size: 18px;
+    }
+  }
+
+  button:hover {
+    opacity: 0.5;
+  }
 }
 
 .item-list {
@@ -11,5 +58,5 @@
 .item-container {
   display: flex;
   flex-direction: column;
-  margin: 6px;
+  margin-right: 70px;
 }

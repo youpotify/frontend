@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import HashTag from "../../components/Home/Hashtag";
 import SearchResult from "../../components/SearchResult/SearchResult";
-import Sidebar from "../../components/Siderbar/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import "./Search.scss";
 
 export default function Search() {
@@ -43,9 +43,7 @@ export default function Search() {
 
   return (
     <div className="search">
-      <Sidebar />
       <div className="body">
-        <Header />
         <div className="contents">
           <HashTag />
           {spotify && youtube && (

@@ -7,27 +7,35 @@ export default function Search() {
   const [keyword, setKeyword] = useState("");
   const [searchResult, setSearchResult] = useState("");
 
-  function SearchKeyword(e) {
-    e.preventDefault();
+  function SearchKeyword() {
     navigate(`/search?q=${encodeURIComponent(keyword)}`);
   }
 
   return (
     <div className="search-bar">
-      <span class="material-symbols-outlined" id="search-btn">
-        search
-      </span>
-      <form onSubmit={(e) => SearchKeyword(e)}>
-        <input
-          placeholder="노래, 앨범, 아티스트, 팟캐스트 검색"
-          value={keyword}
-          onChange={(e) => setKeyword(e.target.value)}
-        />
-      </form>
+      <div className="search-icon-box">
+        <div class="material-symbols-outlined" id="search-icon">
+          search
+        </div>
+      </div>
+
+      <input
+        placeholder="노래, 앨범, 아티스트, 팟캐스트 검색"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            if (keyword === "");
+            else SearchKeyword();
+          }
+        }}
+        id="search-input"
+      />
+
       {keyword && (
         <span
           class="material-symbols-outlined"
-          id="delete-btn"
+          id="delete-button"
           onClick={() => setKeyword("")}
         >
           close
