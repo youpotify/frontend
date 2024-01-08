@@ -180,7 +180,7 @@ function Artist() {
                         <li key={index} className='song-li'>
                             <ul>
                                 {/* 앨범커버 클릭시 해당 앨범페이지로 이동 */}
-                                <Link to={`/album/${s.album.name}`} state={{data:s.album, youtubeId: artistInfo.youtubeId}}>
+                                <Link to={`/album/${s.album.name}`} state={{albumData:s.album, youtubeId: artistInfo.youtubeId}}>
                                     <img className='song-img' src={s.album.images[0].url}/>
                                 </Link>
                                 {/* 곡 제목 클릭시 재생 */}
@@ -198,6 +198,7 @@ function Artist() {
                         </li>
                     ))}
                 </ul>
+                {/* 버튼 클릭시 해당 아티스트의 전체곡 list 출력 페이지로 이동 */}
                 <button className='outline-btns'>모두 보기</button>
             </section>
 

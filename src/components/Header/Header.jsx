@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import "./Header.scss";
+import Weather from "../Weather/Weather";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -9,6 +10,13 @@ export default function Header() {
   function NavigateToProfile() {
     navigate("/profile");
   }
+
+  //날씨 상태관리
+  const [weather, setWeather] = useState(false);
+
+  const onClcikWeather = () => {
+    setWeather(!weather);
+  };
 
   return (
     <div className="header">
@@ -20,7 +28,9 @@ export default function Header() {
         <SearchBar />
       </div>
       <div>
-        <span>날씨</span>
+        <span onClick={onClcikWeather}>{
+          weather ? "날씨" : <Weather/>
+        }</span>
         {/* 클릭 시 날씨와 함께 관련 플레이리스트 팝업? */}
         <img src="profile.png" onClick={NavigateToProfile} id="profile-btn" />
       </div>
