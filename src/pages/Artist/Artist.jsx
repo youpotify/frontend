@@ -136,6 +136,11 @@ function Artist() {
         setCurrentStartIndex(currentStartIndex => Math.min(maxIndex, currentStartIndex + 1));
     };
 
+    //노래제목 클릭시 재생
+    const onClickMusicPlay = (song) => {
+        console.log(song);
+    }
+
 
     if(!artistInfo) {
         return <div>데이터 없음</div>
@@ -159,7 +164,7 @@ function Artist() {
 
             <section className="artist-content inner-cont">
                 <h1>{artistInfo.spotify.name}</h1>
-                {/* <p className={isExpanded ? 'expanded' : '' }>{artistData.info}</p> */}
+                <p className={isExpanded ? 'expanded' : '' }>{artistInfo.description}</p>
                 <button className="outline-btns" onClick={toggleText}>{isExpanded ? '접기' : '더보기'}</button>
 
                 <ul className='likebtns'>
@@ -174,8 +179,13 @@ function Artist() {
                     {artistInfo.spotify.songs.slice(0,5).map((s,index)=>(
                         <li key={index} className='song-li'>
                             <ul>
-                                <img className='song-img' src={s.album.images[0].url}/>
-                                <li className='song-title'>{s.name}</li>
+                                {/* 앨범커버 클릭시 해당 앨범페이지로 이동 */}
+                                <Link to={`/album/${s.album.name}`} state={{albumData:s.album, youtubeId: artistInfo.youtubeId}}>
+                                    <img className='song-img' src={s.album.images[0].url}/>
+                                </Link>
+                                {/* 곡 제목 클릭시 재생 */}
+                                <li className='song-title' onClick={()=> onClickMusicPlay(s)}>{s.name}</li>
+                                {/* 아티스트명 클릭시 해당 아티스트 페이지로 이동 */}
                                 <li className='song-artist'>{artistInfo.spotify.name}</li>
                                 <li className='song-album'>{s.album.name}</li>
                                 <li className='song-icons'>
@@ -188,6 +198,7 @@ function Artist() {
                         </li>
                     ))}
                 </ul>
+                {/* 버튼 클릭시 해당 아티스트의 전체곡 list 출력 페이지로 이동 */}
                 <button className='outline-btns'>모두 보기</button>
             </section>
 
@@ -203,7 +214,7 @@ function Artist() {
                                 </div>
                                 
                                 <span>
-                                    <Link to={`/album/${album.name}`} state={{data:album, youtubeId: artistInfo.youtubeId}}>{album.name}</Link>
+                                    <Link to={`/album/${album.name}`} state={{albumData:album, youtubeId: artistInfo.youtubeId}}>{album.name}</Link>
                                 </span>
                                 {/* <span>{album.release_date}</span> */}
                             </li>

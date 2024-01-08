@@ -152,12 +152,15 @@ a{
                         overflow: hidden;
                         white-space: nowrap;
                         text-overflow: ellipsis;
+                        cursor: pointer;
+                        
                     }
     
     
                     .song-img{
                         width: 30px;
                         height: 30px;
+                        cursor: pointer;
                     }
     
                     .song-icons{
