@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header";
 import Sidebar from "../../components/Siderbar/Sidebar";
 import HashTag from "../../components/Home/Hashtag";
 import MusicVideo from "../../components/Home/recommendations/music-video/MusicVideo";
+import TopChart from "../../components/Home/TopChart/TopChart";
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
 
           <div>잊고 있던 좋은 음악</div>
 
-          <div>인기 차트</div>
+          <TopChart/>
+
+
         </div>
       </div>
     </div>
