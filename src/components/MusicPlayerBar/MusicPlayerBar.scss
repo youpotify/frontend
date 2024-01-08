@@ -44,11 +44,20 @@
         margin: 0px 0px 0px 30px; 
         cursor: pointer; // 마우스 오버 시 포인터 변경
         color: gray;
+
         &:hover {
             color: white; // 마우스 오버 시 색상 변경
         }
     }
+  }
 }
+
+.reaction-icons .like-icon.like-active {
+  color: white; 
+}
+
+.reaction-icons .dislike-icon.dislike-active {
+  color: white; 
 }
 
 .player-info img {
@@ -89,6 +98,8 @@
   margin-right: 10px;
   font-size: 20px; /* 아이콘 크기 설정 */
 }
+
+
 
 @keyframes slideUp {
   from {
